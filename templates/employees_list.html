@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Список сотрудников</title>
+</head>
+<body>
+    <h1>Список сотрудников</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>full_name</th>
+                <th>phone</th>
+                <th>email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for employee in employees %}
+            <tr>
+                <td>{{ employee[0] }}</td>
+                <td>{{ employee[1] }}</td>
+                <td>{{ employee[2] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

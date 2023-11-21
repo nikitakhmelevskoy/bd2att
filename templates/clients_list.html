@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Список клиентов</title>
+</head>
+<body>
+    <h1>Список клиентов</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Имя</th>
+                <th>Телефон</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for clients in clients %}
+            <tr>
+                <td>{{ clients[0] }}</td>
+                <td>{{ clients[1] }}</td>
+                <td>{{ clients[2] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
