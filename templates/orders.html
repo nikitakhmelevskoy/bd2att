@@ -7,7 +7,60 @@
 <body>
     <h1>Управление заказами</h1>
 
-    <h2>Получить список заказов</h2>
-    <form action="/get_all_orders" method="get">
-        <input type="submit" value="Получить список заказов">
+    <form action="/create_order" method="post">
+    <label for="employee_id">ID сотрудника:</label>
+    <input type="text" id="employee_id" name="employee_id"><br><br>
+
+    <label for="client_id">ID клиента:</label>
+    <input type="text" id="client_id" name="client_id"><br><br>
+
+    <label for="product_id">ID товаров (через запятую):</label>
+    <input type="text" id="product_id" name="product_id"><br><br>
+
+    <input type="submit" value="Добавить заказ">
+
     </form>
+
+    <head>
+    <title>Рассчитать стоимость заказа</title>
+</head>
+
+    <h2>Рассчитать стоимость заказа</h2>
+    <form id="calculate_order_form">
+        <label for="product_ids">Введите ID товаров через запятую:</label><br>
+        <input type="text" id="product_ids" name="product_ids"><br><br>
+        <input type="button" value="Рассчитать" onclick="calculateOrderCost()">
+    </form>
+
+    <p id="order_cost_result"></p>
+
+    <script>
+        function calculateOrderCost() {
+            var productIds = document.getElementById('product_ids').value.split(',');
+
+            fetch('/calculate_order_cost', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ product_ids: productIds })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('order_cost_result').innerText = 'Общая стоимость заказа: ' + data.order_cost;
+            })
+            .catch(error => {
+                console.error('Ошибка при рассчете стоимости заказа:', error);
+            });
+        }
+    </script>
+</body>
+
+    <h2>Удалить заказ</h2>
+    <form action="/delete_order" method="post">
+        <label for="order_id">ID заказа:</label>
+        <input type="text" id="order_id" name="order_id" required><br><br>
+
+        <input type="submit" value="Удалить заказ">
+    </form>
+</html>

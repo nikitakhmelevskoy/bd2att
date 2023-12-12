@@ -12,6 +12,9 @@
         <label for="full_name">Имя:</label>
         <input type="text" id="full_name" name="full_name" required><br><br>
 
+        <label for="surname">Фамилия:</label>
+        <input type="text" id="surname" name="surname" required><br><br>
+
         <label for="phone">Телефон:</label>
         <input type="text" id="phone" name="phone" required><br><br>
 
@@ -25,3 +28,14 @@
     <form action="/get_all_clients" method="get">
         <input type="submit" value="Получить список клиентов">
     </form>
+
+        <!-- Форма для удаления сотрудника -->
+    <h2>Удалить клиента</h2>
+    <form action="/delete_client" method="post">
+        <label for="client_id">ID сотрудника:</label>
+        <input type="text" id="client_id" name="client_id" required><br><br>
+
+        <input type="submit" value="Удалить клиента">
+    </form>
+</body>
+</html>
