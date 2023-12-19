@@ -25,6 +25,16 @@
     <title>Рассчитать стоимость заказа</title>
 </head>
 
+    <h2>Получить список сотрудников</h2>
+    <form action="/get_all_orders" method="get">
+        <input type="submit" value="Получить список заказов">
+    </form>
+
+     <h2>Обновить стоимость заказов</h2>
+     <form action="/update_order_cost" method="get">
+        <input type="submit" value="Обновить стоимость заказов">
+    </form>
+
     <h2>Рассчитать стоимость заказа</h2>
     <form id="calculate_order_form">
         <label for="product_ids">Введите ID товаров через запятую:</label><br>
@@ -63,4 +73,5 @@
 
         <input type="submit" value="Удалить заказ">
     </form>
+
 </html>

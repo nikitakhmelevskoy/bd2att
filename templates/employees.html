@@ -7,7 +7,6 @@
 <body>
     <h1>Управление сотрудниками</h1>
 
-    <!-- Форма для добавления сотрудника -->
     <h2>Добавить нового сотрудника</h2>
     <form action="/create_employee" method="post">
         <label for="name">Имя:</label>
@@ -19,13 +18,11 @@
         <input type="submit" value="Добавить сотрудника">
     </form>
 
-    <!-- Форма для чтения сотрудников -->
     <h2>Получить список сотрудников</h2>
     <form action="/get_employees" method="get">
         <input type="submit" value="Получить список сотрудников">
     </form>
 
-    <!-- Форма для обновления данных сотрудника -->
     <h2>Изменить данные сотрудника</h2>
     <form action="/update_employee" method="post">
         <label for="employee_id">ID сотрудника:</label>
@@ -40,10 +37,9 @@
         <input type="submit" value="Изменить данные">
     </form>
 
-    <!-- Форма для удаления сотрудника -->
     <h2>Удалить сотрудника</h2>
     <form action="/delete_employee" method="post">
-        <label for="employee_id">ID сотрудника:</label>
+        <label for="employee_id">Id сотрудника:</label>
         <input type="text" id="employee_id" name="employee_id" required><br><br>
 
         <input type="submit" value="Удалить сотрудника">

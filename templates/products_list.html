@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Список товаров</title>
+    <style>
+        th a {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+    </style>
+</head>
+<body>
+    <h1>Список товаров</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th><a href="?sort=id">Id</a></th>
+                <th><a href="?sort=name">Имя</a></th>
+                <th><a href="/get_all_products?sort_price=desc">Цена ↓</a></th>
+                <th><a href="/get_all_products?sort_weight=desc">Вес ↓</a></th>
+                <th><a href="/get_all_products?sort_size=desc">Размер ↓</a></th>
+                <th><a href="?sort=description">Описание</a></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <td>{{ product[0] }}</td>
+                <td>{{ product[1] }}</td>
+                <td>{{ product[2] }}</td>
+                <td>{{ product[3] }}</td>
+                <td>{{ product[4] }}</td>
+                <td>{{ product[5] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

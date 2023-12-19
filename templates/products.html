@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>Управление товарами</title>
+</head>
+<body>
+    <h1>Управление товарами</h1>
+
+    <h2>Получить список товаров</h2>
+    <form action="/get_all_products" method="get">
+        <input type="submit" value="Получить список товаров">
+    </form>
+
+    <h2>Поиск товара по имени</h2>
+    <form action="/search_product" method="post">
+        <label for="product_name">Имя товара:</label>
+        <input type="text" id="product_name" name="product_name" required>
+        <input type="submit" value="Поиск">
+    </form>
+
+    <h2>Результаты поиска</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Имя товара</th>
+                <th>Цена</th>
+                <th>Вес</th>
+                <th>Размер</th>
+                <th>Описание</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <td>{{ product[0] }}</td>
+                <td>{{ product[1] }}</td>
+                <td>{{ product[2] }}</td>
+                <td>{{ product[3] }}</td>
+                <td>{{ product[4] }}</td>
+                <td>{{ product[5] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <h2>Поиск по цене</h2>
+    <form action="/search_by_price" method="get">
+        <label for="min_price">Минимальная цена:</label>
+        <input type="number" id="min_price" name="min_price" required><br><br>
+
+        <label for="max_price">Максимальная цена:</label>
+        <input type="number" id="max_price" name="max_price" required><br><br>
+
+        <input type="submit" value="Искать">
+    </form>
+</body>
+</html>

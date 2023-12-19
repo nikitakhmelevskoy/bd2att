@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Список товаров в корзине по ID</title>
+</head>
+<body>
+    <h1>Список товаров в корзине по ID</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Id заказа</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for Id in shopping_cart %}
+            <tr>
+                <td>{{ Id[0] }}</td>
+                <td>{{ Id[1] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
