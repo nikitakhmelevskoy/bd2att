@@ -193,38 +193,45 @@ def get_all_clients():
         return "Ошибка при получении списка клиентов"
 
 
+def client_exists(client_id):
+    conn = sqlite3.connect('i_shop.db')
+    cursor = conn.cursor()
+
+    cursor.execute('SELECT * FROM employees WHERE id = ?', (client_id,))
+    existing_employee = cursor.fetchone()
+
+    conn.close()
+
+    return existing_employee is not None
+
+
 @app.route('/delete_client', methods=['POST'])
 def delete_client():
     if request.method == 'POST':
         client_id = request.form['client_id']
 
         if not client_id.isdigit():
-            return "Ошибка: Неверный формат идентификатора клиента"
+            return "Ошибка: Неверный формат идентификатора сотрудника"
+
+        if not client_exists(client_id):
+            return "Ошибка: Сотрудник с указанным идентификатором не найден"
+
         try:
             conn = sqlite3.connect('i_shop.db')
             cursor = conn.cursor()
 
             cursor.execute('DELETE FROM clients WHERE id = ?', (client_id,))
-
+            deleted_rows = cursor.rowcount
             conn.commit()
             conn.close()
 
-            return redirect(url_for('index'))
+            if deleted_rows > 0:
+                return redirect(url_for('index'))
+            else:
+                return "Ошибка: клиент с указанным идентификатором не найден"
         except Exception as e:
             print("Ошибка при удалении клиента:", e)
             return "Ошибка при удалении клиента"
-
-
-def is_employee_exists(employee_id):
-    conn = sqlite3.connect('i_shop.db')
-    cursor = conn.cursor()
-
-    cursor.execute('SELECT * FROM employees WHERE id = ?', (employee_id,))
-    employee = cursor.fetchone()
-
-    conn.close()
-
-    return bool(employee)
 
 
 def is_client_exists(client_id):
@@ -288,6 +295,7 @@ def create_order():
 
         return redirect(url_for('index'))
 
+
 @app.route('/get_all_orders', methods=['GET'])
 def get_all_orders():
     conn = sqlite3.connect('i_shop.db')
@@ -334,6 +342,8 @@ def update_order_cost():
     except Exception as e:
         print("Error updating order cost:", e)
         return "Error updating order cost"
+
+
 @app.route('/delete_order', methods=['POST'])
 def delete_order():
     if request.method == 'POST':
